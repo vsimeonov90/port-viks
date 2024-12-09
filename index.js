@@ -17,7 +17,8 @@ pool.connect((err) => {
   if (err) {
     console.error('Database connection failed:', err.stack);
   } else {
-    pool.query(`CREATE TABLE recommends (id SERIAL PRIMARY KEY, content TEXT NOT NULL, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);`, (err) => {
+    pool.query(`DROP TABLE recommends`);
+    pool.query(`CREATE TABLE recommends (id SERIAL PRIMARY KEY, content TEXT NOT NULL, sender_mail TEXT NOT NULL, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);`, (err) => {
       if (err && !~err.message.indexOf('already exists')) {
         console.log('Database recommends already exists.');
       } else {
