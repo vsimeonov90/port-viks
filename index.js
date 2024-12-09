@@ -19,7 +19,9 @@ pool.connect((err) => {
   } else {
     pool.query('CREATE DATABASE recommends', (err) => {
       if (err && !~err.message.indexOf('already exists')) {
-        console.log(err);
+        console.log('Database recommends already exists.');
+      } else {
+        console.log('Database recommends created.');
       });
     console.log('Connected to MySQL database');
   }
