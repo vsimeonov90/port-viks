@@ -17,6 +17,10 @@ pool.connect((err) => {
   if (err) {
     console.error('Database connection failed:', err.stack);
   } else {
+    pool.query('CREATE DATABASE recommends', (err) => {
+      if (err && !~err.message.indexOf('already exists')) {
+        console.log(err);
+      });
     console.log('Connected to MySQL database');
   }
 });
