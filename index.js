@@ -24,7 +24,7 @@ pool.connect((err) => {
         console.log('Database recommends created.');
       }
     console.log('Connected to MySQL database');
-  }
+  });
 });
 
 // API Endpoints
