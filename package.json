@@ -1,0 +1,17 @@
+{
+  "name": "recommendations-backend",
+  "version": "1.0.0",
+  "description": "Backend for post submission",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql2": "^2.2.5",
+    "dotenv": "^10.0.0"
+  },
+  "engines": {
+    "node": "16.x"
+  }
+}
