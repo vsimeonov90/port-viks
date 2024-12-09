@@ -26,12 +26,12 @@ pool.connect((err) => {
 
 // API Endpoints
 app.post('/recommendation', (req, res) => {
-  const { question } = req.body.text;
-  const { email } = req.body.email;
-  if (!question) {
+  const { text } = req.body;
+  const { email } = req.body;
+  if (!text || !email) {
     return res.status(400).json({ error: 'Text is required.' });
   }
-  pool.query('INSERT INTO recommends (content) VALUES ($1) RETURNING *', [question], (err, results) => {
+  pool.query('INSERT INTO recommends (content) VALUES ($1) RETURNING *', [text], (err, results) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
