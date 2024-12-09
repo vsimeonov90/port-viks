@@ -26,8 +26,9 @@ pool.connect((err) => {
 
 // API Endpoints
 app.post('/recommendation', (req, res) => {
-  const { question } = req.body;
-  if (!question) {
+  const { question } = req.content;
+  const { email } = req.email;
+  if (!question || !mail) {
     return res.status(400).json({ error: 'Text is required.' });
   }
   pool.query('INSERT INTO recommends (content) VALUES ($1) RETURNING *', [question], (err, results) => {
@@ -36,7 +37,14 @@ app.post('/recommendation', (req, res) => {
     }
     res.status(200).json({ message: 'Opinion saved!', data: results });
   });
+  pool.query('INSERT INTO recommends (sender_mail) VALUES ($1) RETURNING *', [email], (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    res.status(200).json({ message: 'Opinion saved!', data: results });
+  })
 });
+
 
 // Get all questions
 app.get('/recommendation', (req, res) => {
