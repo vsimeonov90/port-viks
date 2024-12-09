@@ -34,7 +34,7 @@ app.post('/recommendation', (req, res) => {
   if (!question) {
     return res.status(400).json({ error: 'Text is required.' });
   }
-  pool.query('INSERT INTO recommends (content) VALUES ($1) RETURNING *', [question], (err, results) => {
+  pool.query('INSERT INTO recommends (content) VALUES ($1) RETURNING *', {question}, (err, results) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
