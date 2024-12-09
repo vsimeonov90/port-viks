@@ -26,8 +26,8 @@ pool.connect((err) => {
 
 // API Endpoints
 app.post('/recommendation', (req, res) => {
-  const { question } = req.content;
-  const { email } = req.email;
+  const { question } = req.body.text;
+  const { email } = req.body.email;
   if (!question || !mail) {
     return res.status(400).json({ error: 'Text is required.' });
   }
