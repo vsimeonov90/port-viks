@@ -28,7 +28,7 @@ pool.connect((err) => {
 app.post('/recommendation', (req, res) => {
   const { question } = req.body.text;
   const { email } = req.body.email;
-  if (!question || !mail) {
+  if (!question || !email) {
     return res.status(400).json({ error: 'Text is required.' });
   }
   pool.query('INSERT INTO recommends (content) VALUES ($1) RETURNING *', [question], (err, results) => {
